@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login</title>
+
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <main class="container">
+            <div class="left">
+                <form action="">
+                    <h1>Ingresa a tu cuenta</h1>
+                    <p>
+                        Ayuda a tus estudiantes a ser grandes profesionales con
+                        tu propia bolsa de empleos.
+                    </p>
+
+                    <div class="form-group column">
+                        <input type="text" placeholder="Dominio" />
+                        <span class="domain">.hiringroomcampus.com</span>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- <div>
+                            <input type="checkbox" id="remember" />
+                            <label for="remember" class="checkbox">
+                                Recordar cuenta
+                            </label>
+                        </div> -->
+                        <a href="#" id="open-modal" class="center"
+                            >¿Cuál es mi dominio?</a
+                        >
+                    </div>
+
+                    <button>
+                        Continuar
+                        <img src="assets/ICON-Carret_right.svg" alt="" />
+                    </button>
+                </form>
+
+                <div class="footer">
+                    <ul>
+                        <li>
+                            <a href="">
+                                <div class="icon" id="facebook"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <div class="icon" id="instagram"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <div class="icon" id="linkedin"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <div class="icon" id="youtube"></div>
+                            </a>
+                        </li>
+                    </ul>
+                    <p>Copyright &copy; Hiring Room Campus 2020</p>
+                </div>
+            </div>
+            <div class="right">
+                <img src="assets/logo.svg" alt="" class="logo" />
+                <img src="assets/estrellitas.svg" alt="" class="stars" />
+                <img src="assets/grande.png" alt="" class="bigImage" />
+                <img src="assets/avion.svg" alt="" class="plane" />
+            </div>
+        </main>
+
+        <section class="modal" id="modal">
+            <div class="modal__wrapper">
+                <img
+                    src="assets/ICON-Cross.svg"
+                    alt=""
+                    class="modal__wrapper--icon"
+                    id="close-modal"
+                />
+                <h4 class="modal__wrapper--title">¿Cuál es mi dominio?</h4>
+                <hr />
+                <p class="modal__wrapper--text">
+                    <strong>
+                        El domnio es informado a la hora de crear la cuenta.
+                    </strong>
+                    <br />
+                    Si tenés dudas sobre cuál es el tuyo comunicate con
+                    <span class="orange">soporte@hiringroom.com</span>
+                </p>
+                <button class="modal__wrapper--button" id="back-modal">
+                    Volver
+                </button>
+            </div>
+        </section>
+
+        <script src="js/modal.js"></script>
+    </body>
+</html>

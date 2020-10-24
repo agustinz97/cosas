@@ -1,0 +1,293 @@
+@font-face {
+  font-family: "Hiring-Font";
+  src: url("fonts/Hiring-Font.eot");
+  src: url("fonts/Hiring-Font.eot") format("embedded-opentype"),
+    url("fonts/Hiring-Font.ttf") format("truetype"),
+    url("fonts/Hiring-Font.woff") format("woff"),
+    url("fonts/Hiring-Font.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="hr-"],
+[class*=" hr-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "Hiring-Font" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  color: #555;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hr-Info:before {
+  content: "\e938";
+}
+.hr-Shop:before {
+  content: "\e939";
+}
+.hr-ICON-Settings:before {
+  content: "\e93a";
+}
+.hr-Phone:before {
+  content: "\e93b";
+}
+.hr-Layers:before {
+  content: "\e93c";
+}
+.hr-Folder:before {
+  content: "\e93d";
+}
+.hr-Award:before {
+  content: "\e93e";
+}
+.hr-Story:before {
+  content: "\e93f";
+}
+.hr-File:before {
+  content: "\e940";
+}
+.hr-Dialogue:before {
+  content: "\e941";
+}
+.hr-Person-Plus:before {
+  content: "\e942";
+}
+.hr-Download:before {
+  content: "\e943";
+}
+.hr-Web:before {
+  content: "\e944";
+}
+.hr-Order-Down:before {
+  content: "\e945";
+}
+.hr-Order-Up:before {
+  content: "\e946";
+}
+.hr-Order:before {
+  content: "\e947";
+}
+.hr-Team:before {
+  content: "\e948";
+}
+.hr-Interview:before {
+  content: "\e949";
+}
+.hr-Person:before {
+  content: "\e94a";
+}
+.hr-Required:before {
+  content: "\e94b";
+}
+.hr-Request:before {
+  content: "\e94c";
+}
+.hr-Company:before {
+  content: "\e94d";
+}
+.hr-Campus:before {
+  content: "\e94e";
+}
+.hr-Tie:before {
+  content: "\e94f";
+}
+.hr-Charge:before {
+  content: "\e950";
+}
+.hr-Attach:before {
+  content: "\e934";
+}
+.hr-Barcode:before {
+  content: "\e935";
+}
+.hr-Publication:before {
+  content: "\e936";
+}
+.hr-Statics:before {
+  content: "\e937";
+}
+.hr-Edit-file:before {
+  content: "\e900";
+}
+.hr-Invite:before {
+  content: "\e901";
+}
+.hr-Terna:before {
+  content: "\e902";
+}
+.hr-Type:before {
+  content: "\e903";
+}
+.hr-Video:before {
+  content: "\e904";
+}
+.hr-Alert:before {
+  content: "\e905";
+}
+.hr-Arrow-up:before {
+  content: "\e906";
+}
+.hr-Calendar:before {
+  content: "\e907";
+}
+.hr-Calendar2:before {
+  content: "\e908";
+}
+.hr-Carret-down:before {
+  content: "\e909";
+}
+.hr-Carret-left:before {
+  content: "\e90a";
+}
+.hr-Carret-right:before {
+  content: "\e90b";
+}
+.hr-Carret-up:before {
+  content: "\e90c";
+}
+.hr-Change:before {
+  content: "\e90d";
+}
+.hr-Checkmark:before {
+  content: "\e90e";
+}
+.hr-Clock:before {
+  content: "\e90f";
+}
+.hr-Close:before {
+  content: "\e910";
+}
+.hr-Copy:before {
+  content: "\e911";
+}
+.hr-Cross:before {
+  content: "\e912";
+}
+.hr-CV:before {
+  content: "\e913";
+}
+.hr-Data:before {
+  content: "\e914";
+}
+.hr-email:before {
+  content: "\e915";
+}
+.hr-Eye-off:before {
+  content: "\e916";
+}
+.hr-Eye-open:before {
+  content: "\e917";
+}
+.hr-Flash:before {
+  content: "\e918";
+}
+.hr-Funnel:before {
+  content: "\e919";
+}
+.hr-Glove:before {
+  content: "\e91a";
+}
+.hr-Home:before {
+  content: "\e91b";
+}
+.hr-Image:before {
+  content: "\e91c";
+}
+.hr-In:before {
+  content: "\e91d";
+}
+.hr-Link:before {
+  content: "\e91e";
+}
+.hr-Location-pin:before {
+  content: "\e91f";
+}
+.hr-Lock:before {
+  content: "\e920";
+}
+.hr-Magnet:before {
+  content: "\e921";
+}
+.hr-Metric:before {
+  content: "\e922";
+}
+.hr-Move:before {
+  content: "\e923";
+}
+.hr-Notification:before {
+  content: "\e924";
+}
+.hr-Options:before {
+  content: "\e925";
+}
+.hr-Out:before {
+  content: "\e926";
+}
+.hr-Pencil:before {
+  content: "\e927";
+}
+.hr-People:before {
+  content: "\e928";
+}
+.hr-Plus:before {
+  content: "\e929";
+}
+.hr-Question:before {
+  content: "\e92a";
+}
+.hr-Search:before {
+  content: "\e92b";
+}
+.hr-Settings:before {
+  content: "\e92c";
+}
+.hr-Share:before {
+  content: "\e92d";
+}
+.hr-Star-On:before {
+  content: "\e92e";
+}
+.hr-Star-Off:before {
+  content: "\e92f";
+}
+.hr-Tag:before {
+  content: "\e930";
+}
+.hr-Trash:before {
+  content: "\e931";
+}
+.hr-Trophy:before {
+  content: "\e932";
+}
+.hr-Work-area:before {
+  content: "\e933";
+}
+.fs1 {
+  font-size: 19px;
+  position: relative;
+  top: 2px;
+  margin-right: 3px;
+}
+.fs2 {
+  font-size: 28px;
+  position: relative;
+}
+
+.postulantMassiveActions {
+  font-size: 15px !important;
+  vertical-align: middle !important;
+  font-weight: bold !important;
+}
+
+.usefulActionsPostulants {
+  padding-right: 3px;
+  font-weight: bold;
+}

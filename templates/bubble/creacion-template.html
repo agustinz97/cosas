@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="creacion-template.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="create_template">
+      <h4 class="create_template__title">Creación de template</h4>
+
+      <p class="create_template__paragraph">
+        Edita y personaliza el formulario que utilizarás en las entrevistas
+      </p>
+
+      <div class="create_template__input_group">
+        <label for="" class="create_template__input_group--label">
+          Nombre del template <span class="red">*</span>
+        </label>
+        <input
+          type="text"
+          class="create_template__input_group--input"
+          placeholder="Ingrese el nombre"
+        />
+      </div>
+
+      <div class="questions">
+        <div class="questions__dots">
+          <div class="questions__dots--container">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+        <div class="questions__container">
+          <div class="question">
+            <div class="create_template__input_group">
+              <label for="" class="create_template__input_group--label">
+                Nombre del template <span class="red">*</span>
+              </label>
+              <input
+                type="text"
+                class="create_template__input_group--input"
+                placeholder="Ingrese el nombre"
+              />
+            </div>
+            <div class="create_template__input_group">
+              <label for="" class="create_template__input_group--label">
+                Nombre del template <span class="red">*</span>
+              </label>
+              <div class="create_template__input_group--select">
+                <select name="" id="">
+                  <option value="">Seleccionar una opción</option>
+                  <option value="">Opcion</option>
+                  <option value="">Opcion</option>
+                  <option value="">Opcion</option>
+                </select>
+                <i class="hr-Carret-down icon"></i>
+              </div>
+            </div>
+          </div>
+          <button class="questions__button remove">
+            <i class="hr-Trash"></i>
+            Eliminar
+          </button>
+        </div>
+        <button class="questions__button">
+          <i class="hr-Plus"></i>
+          Nueva pregunta
+        </button>
+      </div>
+
+      <div class="create_template__button_container">
+        <button class="create_teamplate__button muted">Cancelar</button>
+        <button class="create_teamplate__button">Confirmar</button>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,277 @@
+@keyframes modal-1 {
+    to {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes modal-2 {
+    from {
+        transform: translateY(10%);
+    }
+
+    to {
+        transform: translateY(-200%);
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
+.modal-custom {
+    height: 100vh;
+    width: 100%;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(137, 137, 137, 0.3);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    opacity: 0;
+    z-index: -1;
+}
+
+.modal-custom .modal__wrapper {
+    height: auto;
+    width: 45%;
+    margin-top: 5%;
+    padding: 2rem;
+
+    background-color: #fff;
+    border-radius: 6px !important;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+
+    transform: translateY(-200%);
+
+    animation-duration: 0.4s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-custom .modal__wrapper.confirm {
+    height: auto;
+    max-width: 550px;
+}
+
+.modal-custom .modal__wrapper.success {
+    height: auto;
+    max-width: 370px;
+}
+
+.modal-custom .modal__wrapper.preview {
+    height: auto;
+    max-width: 510px;
+}
+
+.modal-custom .modal__wrapper.left {
+    align-items: flex-start;
+}
+
+.modal-custom .modal__wrapper--close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.modal-custom .modal__wrapper--icon {
+    height: 141px;
+    margin-bottom: 32px;
+}
+
+.modal-custom .modal__wrapper--title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #24bb72;
+    margin-bottom: 8px;
+}
+
+.modal-custom .modal__wrapper--title.black {
+    font-size: 18px;
+    color: #3b3f51;
+}
+
+.modal-custom .modal__wrapper--title span {
+    font-weight: normal;
+}
+
+.modal-custom .modal__wrapper hr {
+    width: 100%;
+    margin-top: 12px;
+    margin-bottom: 24px;
+    color: #dadada;
+}
+
+.modal-custom .modal__wrapper--text {
+    width: 100%;
+
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 25px;
+
+    margin-bottom: 24px;
+}
+
+.modal-custom .modal__wrapper--text--warning {
+    color: red;
+    font-size: 14px;
+    line-height: 25px;
+    background-color: #eee;
+    padding: 8px 2rem;
+    margin: 0 -2rem;
+    margin-bottom: 24px;
+}
+
+.modal-custom .modal__wrapper--text--warning i {
+    margin-right: 8px;
+}
+
+.modal-custom .modal__wrapper.success .modal__wrapper--text {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 25px;
+    margin-bottom: 24px;
+}
+
+.modal-custom .modal__wrapper .btn-group {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.modal-custom .modal__wrapper .btn-group button:first-child {
+    margin-right: 8px;
+}
+
+.modal-custom .modal__wrapper .selectAndButton {
+    width: 100%;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 70% auto;
+    gap: 16px;
+}
+
+.modal-custom .modal__wrapper .selectAndButton > * {
+    width: 100%;
+}
+
+.preview-questions {
+    width: 100%;
+}
+
+.preview-questions .question {
+    margin-bottom: 16px;
+}
+
+.preview-questions .question.invalid {
+    padding: 8px;
+    margin-bottom: 16px;
+
+    border: 1px solid red;
+    border-radius: 6px !important;
+    position: relative;
+}
+
+.preview-questions .question.invalid::after {
+    font-family: 'Hiring-Font' !important;
+    color: red;
+    font-size: 24px;
+
+    content: '\e905 Campo requerido';
+    width: 24px;
+    height: 24px;
+
+    position: absolute;
+    top: 50%;
+    right: 0;
+
+    transform: translate(-100%, -50%);
+}
+
+.preview-questions .question h6 {
+    font-size: 14px;
+}
+
+.preview-questions .question input[type='text'] {
+    width: auto;
+    height: auto !important;
+    padding: 0;
+    margin: 0;
+
+    background-color: transparent;
+
+    border: none !important;
+    border-radius: 0 !important;
+
+    font-size: 14px;
+    color: #3b3f51;
+}
+
+.preview-questions .question .answer {
+    margin-top: 5px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-questions .question .answer > div {
+    display: flex;
+    align-items: center;
+}
+
+.preview-questions .question .answer > div > input {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}
+
+.preview-questions .question .answer > div > label {
+    font-size: 14px;
+}
+
+.preview-questions .question .answer.scale {
+    display: flex;
+    flex-direction: row;
+}
+
+.preview-questions .question .answer.scale > div {
+    margin-right: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preview-questions .question .answer.scale > div input {
+    margin: 0;
+    margin-bottom: 2px;
+
+    position: relative;
+}
+
+.preview-questions .question .answer.scale > div:not(:last-child) input:after {
+    content: '';
+    width: 24px;
+    height: 1px;
+
+    background-color: #3b3f51;
+
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+}

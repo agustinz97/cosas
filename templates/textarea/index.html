@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <form action="">
+            <input type="text" placeholder="Campo de texto" />
+
+            <select name="" id="">
+                <option value="">Opcion 1</option>
+                <option value="">Opcion 2</option>
+                <option value="">Opcion 3</option>
+            </select>
+
+            <textarea id="textarea" maxlength="100"></textarea>
+        </form>
+
+        <script>
+            class Textarea {
+                constructor(params) {
+                    const { element } = params
+                    this.el = document.querySelector(element)
+                    this.maxChars = this.el.maxLength || 1000
+                    this.counter = null
+                    this.wrapper = null
+
+                    //binds
+                    this.setCounter = this.setCounter.bind(this)
+
+                    this.init()
+                }
+
+                init() {
+                    this.wrap()
+
+                    this.el.addEventListener('keypress', this.setCounter)
+                }
+
+                wrap() {
+                    this.wrapper = document.createElement('div')
+                    this.wrapper.style.position = 'relative'
+                    this.wrapper.style.display = 'flex'
+                    this.wrapper.classList.add('textarea-wrapper')
+
+                    const container = this.el.parentElement
+
+                    this.counter = document.createElement('span')
+                    this.counter.style.position = 'absolute'
+                    this.counter.style.bottom = '8px'
+                    this.counter.style.right = '8px'
+                    this.setCounter()
+
+                    container.insertBefore(this.wrapper, this.el)
+                    this.wrapper.appendChild(this.el)
+                    this.wrapper.appendChild(this.counter)
+                }
+
+                setCounter() {
+                    console.log(this)
+                    const count = this.el.value.length
+                    this.counter.textContent = `${count} / ${this.maxChars}`
+                }
+            }
+
+            new Textarea({
+                element: '#textarea',
+            })
+        </script>
+    </body>
+</html>

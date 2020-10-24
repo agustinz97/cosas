@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="otros.css" />
+        <link rel="stylesheet" href="hr-font.css" />
+
+        <!-- Latest compiled and minified CSS -->
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous"
+        ></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"
+        ></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    </head>
+    <body>
+        <form action="" class="form-rounded" id="template-container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="fw-700">Creación de template</h4>
+                    <p>
+                        Edita y personaliza el formulario que utilizarás en las
+                        entrevistas
+                    </p>
+
+                    <label for="template_name"
+                        >Nombre del template <span class="red">*</span></label
+                    >
+
+                    <input
+                        type="text"
+                        placeholder="Ingrese el nombre"
+                        id="template_name"
+                    />
+                </div>
+            </div>
+
+            <div class="questions">
+                <div class="question invalid">
+                    <div class="move-icon">
+                        <i class="hr-Move"></i>
+                    </div>
+
+                    <div class="question__data">
+                        <div>
+                            <label for="">Pregunta</label>
+                            <input
+                                type="text"
+                                placeholder="Ingrese una pregunta"
+                                id="text_1"
+                            />
+                        </div>
+
+                        <div>
+                            <label for="">Tipo de Pregunta</label>
+                            <div class="select-wrapper">
+                                <select
+                                    name=""
+                                    id="type_1"
+                                    onchange="changeQuestionType(event)"
+                                >
+                                    <option value="0">
+                                        Seleccione una opción
+                                    </option>
+
+                                    <option value="open">
+                                        &#xe93e; Abierta
+                                    </option>
+                                    <option value="closed">
+                                        &#xe93e; Única opción
+                                    </option>
+                                    <option value="multiple">
+                                        &#xe93e; Varias opciones
+                                    </option>
+                                    <option value="scale">
+                                        &#xe93e; Escala lineal
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="answers"></div>
+
+                        <div
+                            class="d-flex justify-end align-end"
+                            onclick="removeQuestion(event)"
+                        >
+                            <span
+                                class="red fw-700 d-flex align-center cursor-pointer"
+                            >
+                                <i class="hr-Trash red fs-20"></i>
+                                Eliminar
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="invalid-msg">
+                        <i class="hr-Alert"></i>
+                        Faltan campos por completar
+                    </div>
+                </div>
+            </div>
+
+            <span
+                class="new-question green fw-700 d-flex align-center"
+                id="new-question"
+            >
+                <i class="hr-Plus green fs-20"></i>
+                Nueva pregunta
+            </span>
+
+            <div class="row mt-38">
+                <button class="btn btn-default px-24">Cancelar</button>
+                <button
+                    class="btn btn-green pull-right px-24"
+                    id="save-template"
+                >
+                    Confirmar
+                </button>
+                <button
+                    class="btn btn-green btn-big pull-right"
+                    id="update-template"
+                    style="display: none"
+                    type="buton"
+                >
+                    Confirmar
+                </button>
+            </div>
+
+            <button
+                class="btn-edit"
+                id-config="5f16eeaed8d955388c611eba"
+                type="button"
+            >
+                Editar
+            </button>
+        </form>
+
+        <script src="./drag.js"></script>
+
+        <script>
+            console.log(Boolean('false'))
+
+            const btnNewQuestion = document.querySelector('.new-question')
+            btnNewQuestion.addEventListener('click', addNewQuestion)
+
+            const btnSave = document.getElementById('save-template')
+
+            function isValidQuestion(question) {
+                //check que no este en blanco la pregunta
+                if (!question.text) {
+                    console.log('text invalido')
+                    return false
+                }
+
+                //Check del tipo
+                const types = ['open', 'closed', 'multiple', 'escale']
+                if (!types.includes(question.type)) {
+                    console.log('type invalido')
+
+                    return false
+                } else {
+                    //check que tenga opciones y si tiene que no esten vacias
+                    if (
+                        question.type === 'closed' ||
+                        question.type === 'multiple'
+                    ) {
+                        if (!question.options) {
+                            console.log('options invalido')
+
+                            return false
+                        } else {
+                            const emptyIndex = question.options.findIndex(
+                                x => x === ''
+                            )
+
+                            console.log(emptyIndex)
+
+                            if (emptyIndex >= 0) {
+                                console.log('option vacia')
+
+                                return false
+                            }
+                        }
+                    }
+                }
+
+                return true
+            }
+
+            function makeQuestionObject(questionElement) {
+                const question = questionElement
+
+                let newQuestion = {
+                    text: question.querySelectorAll('input')[0].value,
+                    type: question.querySelectorAll('select')[0].value,
+                }
+
+                switch (newQuestion.type) {
+                    case 'open':
+                        break
+                    case 'closed':
+                    case 'multiple':
+                        const options = Array.from(
+                            question.querySelectorAll(
+                                '.answer input[type="text"]'
+                            )
+                        )
+
+                        newQuestion = {
+                            ...newQuestion,
+                            options: options.map(input => input.value),
+                        }
+
+                        break
+                    case 'scale':
+                        const values = Array.from(
+                            question.querySelectorAll('.answer select')
+                        )
+
+                        newQuestion = {
+                            ...newQuestion,
+                            from: values[0].value,
+                            to: values[1].value,
+                        }
+                }
+
+                return newQuestion
+            }
+
+            btnSave.addEventListener('click', function (e) {
+                e.preventDefault()
+
+                const template = {
+                    name: document.getElementById('template_name').value,
+                    questions: [],
+                }
+
+                const questions = Array.from(
+                    document.querySelectorAll('.question')
+                )
+
+                questions.forEach((question, i) => {
+                    const index = i + 1
+
+                    let newQuestion = makeQuestionObject(question)
+
+                    if (!isValidQuestion(newQuestion)) {
+                        //logica de invalido
+                        console.log(`La pregunta ${i} es invalida`)
+                        return
+                    }
+                    template.questions.push(newQuestion)
+                })
+                console.log(template)
+            })
+
+            function addNewQuestion(question = {}) {
+                const panelQuestions = document.querySelector('.questions')
+
+                const index = panelQuestions.children.length + 1
+
+                const newQuestion = document.createElement('div')
+                newQuestion.classList.add('question')
+
+                if (question._id) {
+                    newQuestion.setAttribute('id-config', question._id)
+                } else {
+                    newQuestion.setAttribute('action', 'new')
+                }
+
+                newQuestion.innerHTML = `
+                                <div class="move-icon">
+                                    <i class="hr-Move"></i>
+                                </div>
+
+                                <div class="question__data">
+                                    <div>
+                                        <label for="">Pregunta</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Ingrese una pregunta"
+                                            id="text_${index}",
+                                            value='${question.text || ''}'
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label for="">Tipo de Pregunta</label>
+                                        <div class="select-wrapper">
+                                                <select
+                                                    name=""
+                                                    id="type_${index}"
+                                                    onchange="changeQuestionType(event)"
+                                                >
+                                                <option value="0"
+                                                    >Seleccione una opción</option
+                                                >
+                                                <option value="open" ${
+                                                    question.type === 'open'
+                                                        ? 'selected'
+                                                        : ''
+                                                }>Abierta</option>
+                                                <option value="closed" ${
+                                                    question.type === 'closed'
+                                                        ? 'selected'
+                                                        : ''
+                                                }
+                                                    >Única opción</option
+                                                >
+                                                <option value="multiple" ${
+                                                    question.type === 'multiple'
+                                                        ? 'selected'
+                                                        : ''
+                                                }
+                                                    >Varias opciones</option
+                                                >
+                                                <option value="scale" ${
+                                                    question.type === 'scale'
+                                                        ? 'selected'
+                                                        : ''
+                                                }
+                                                    >Escala lineal</option
+                                                >
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="answers">
+                                        ${
+                                            question.type === 'scale'
+                                                ? `
+                                                <div class="answer linear">
+                                                    <span class="fw-700">De</span>
+                                                    <div class="select-wrapper">
+                                                        <select name="" id="">
+                                                            <option value="1">1</option>
+                                                        </select>
+                                                    </div>
+                                                    <span class="fw-700">a</span>
+                                                    <div class="select-wrapper">
+                                                        <select name="" id="">
+                                                            <option value="5" ${
+                                                                question.from ===
+                                                                    5 &&
+                                                                'selected'
+                                                            }>5</option>
+                                                            <option value="10" ${
+                                                                question.from ===
+                                                                    10 &&
+                                                                'selected'
+                                                            }>10</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            `
+                                                : ''
+                                        }
+                                        ${
+                                            question.type === 'closed'
+                                                ? Array.from(
+                                                      question.options
+                                                  ).map(option => {
+                                                      return `
+                                                    <div class="answer">
+                                                        <div class="move-icon small">
+                                                            <i class="hr-Move"></i>
+                                                        </div>
+                                                        <input type="radio" name="${question._id}"/>
+                                                        <div class="input-wrapper">
+                                                            <input type="text" value="${option}"/>
+                                                            <i class="hr-Trash red fs-20 cursor-pointer"
+                                                                onclick="removeAnswer(event)"></i>
+                                                        </div>
+                                                    </div>
+                                                        `
+                                                  })
+                                                : ''
+                                        }
+
+                                        ${
+                                            question.type === 'multiple'
+                                                ? Array.from(
+                                                      question.options
+                                                  ).map(option => {
+                                                      return `
+                                                    <div class="answer">
+                                                        <div class="move-icon small">
+                                                            <i class="hr-Move"></i>
+                                                        </div>
+                                                        <input type="checkbox" name="${question._id}"/>
+                                                        <div class="input-wrapper">
+                                                            <input type="text" value="${option}"/>
+                                                            <i class="hr-Trash red fs-20 cursor-pointer"
+                                                                onclick="removeAnswer(event)"></i>
+                                                        </div>
+                                                    </div>
+                                                        `
+                                                  })
+                                                : ''
+                                        }
+
+                                    </div>
+
+                                    <div class="d-flex justify-end align-end " onclick="removeQuestion(event)">
+                                        <span class="red fw-700 d-flex align-center cursor-pointer">
+                                            <i class="hr-Trash red fs-20"></i>
+                                            Eliminar
+                                        </span>
+                                    </div>
+                                </div>
+                            `
+
+                panelQuestions.appendChild(newQuestion)
+            }
+
+            function removeQuestion(evt) {
+                const question = evt.target.closest('.question')
+
+                if (question.getAttribute('id-config')) {
+                    question.setAttribute('action', 'remove')
+                    question.classList.add('hidden')
+                } else {
+                    question.remove()
+                }
+            }
+
+            function addRadioAnswer(evt, name) {
+                const answersSection = evt.target.closest('.answers')
+
+                const btnNewAnswer =
+                    answersSection.children[answersSection.children.length - 1]
+
+                const newAnswer = document.createElement('div')
+                newAnswer.classList.add('answer')
+                newAnswer.innerHTML = `<div class="move-icon small">
+                                                        <i class="hr-Move"></i>
+                                                    </div>
+                                                    <input type="radio" name="${name}"/>
+                                                    <div class="input-wrapper">
+                                                        <input type="text" class=""/>
+                                                        <i class="hr-Trash red fs-20 cursor-pointer"
+                                                        onclick="removeAnswer(event)"></i>
+                                                    </div>
+                                                    `
+
+                answersSection.insertBefore(newAnswer, btnNewAnswer)
+            }
+
+            function addCheckboxAnswer(evt, name) {
+                const answersSection = evt.target.closest('.answers')
+
+                const btnNewAnswer =
+                    answersSection.children[answersSection.children.length - 1]
+
+                const newAnswer = document.createElement('div')
+                newAnswer.classList.add('answer')
+                newAnswer.innerHTML = `<div class="move-icon small">
+                                                        <i class="hr-Move"></i>
+                                                    </div>
+                                                    <input type="checkbox" name="${name}"/>
+                                                    <div class="input-wrapper">
+                                                        <input type="text" class=""/>
+                                                        <i class="hr-Trash red fs-20 cursor-pointer"
+                                                        onclick="removeAnswer(event)"></i>
+                                                    </div>
+                                                    `
+
+                answersSection.insertBefore(newAnswer, btnNewAnswer)
+            }
+
+            function changeQuestionType(evt) {
+                const questionsContainer = document.querySelector('.questions')
+                const questionData = evt.target.closest('.question__data')
+                const answersSection = questionData.children[2]
+
+                const index = questionsContainer.children.length
+                const type = evt.target.value
+
+                switch (type) {
+                    case 'open':
+                        answersSection.innerHTML = `
+                                        <input type="text" placeholder='Texto de respuesta'>
+                                    `
+                        break
+                    case 'closed':
+                        answersSection.innerHTML = `
+                                        <div class="answer">
+                                            <div class="move-icon small">
+                                                <i class="hr-Move"></i>
+                                            </div>
+                                            <input type="radio" name='question_${index}' />
+
+                                            <div class="input-wrapper">
+                                                <input type="text" class=""/>
+                                                <i class="hr-Trash red fs-20 cursor-pointer"
+                                                onclick="removeAnswer(event)"></i>
+                                            </div>
+                                        </div>
+                                         <div class="green fw-700 new-option"
+                                            onclick="addRadioAnswer(event, 'question_${index}')">
+                                            <span>
+                                                <i class="hr-Plus fs-20"></i>
+                                                Nueva opción
+                                            </span>
+                                        </div>
+                                    `
+
+                        new Sortable(answersSection, OPTIONS)
+                        break
+                    case 'multiple':
+                        answersSection.innerHTML = `
+                                            <div class="answer">
+                                                <div class="move-icon small">
+                                                    <i class="hr-Move"></i>
+                                                </div>
+                                                <input type="checkbox" name='question_${index}'/>
+                                                <div class="input-wrapper">
+                                                    <input type="text" class=""/>
+                                                    <i class="hr-Trash red fs-20 cursor-pointer"
+                                                    onclick="removeAnswer(event)"></i>
+                                                </div>
+                                            </div>
+                                            <div class="green fw-700 new-option"
+                                                onclick="addCheckboxAnswer(event, 'question_${index}')">
+                                                <span>
+                                                    <i class="hr-Plus fs-20"></i>
+                                                    Nueva opción
+                                                </span>
+                                            </div>
+                                        `
+                        new Sortable(answersSection, OPTIONS)
+                        break
+                    case 'scale':
+                        answersSection.innerHTML = `
+                                        <div class="answer linear">
+                                            <span class="fw-700">De</span>
+                                            <div class="select-wrapper">
+                                                <select name="" id="">
+                                                    <option value="1">1</option>
+                                                </select>
+                                            </div>
+                                            <span class="fw-700">a</span>
+                                            <div class="select-wrapper">
+                                                <select name="" id="">
+                                                    <option value="5">5</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    `
+                }
+            }
+
+            function removeAnswer(evt) {
+                evt.target.closest('.answer').remove()
+            }
+
+            function getQuestion(idQuestion) {
+                return new Promise((resolve, reject) => {
+                    return resolve({
+                        _id: '5f16eeaed8d955388c611eba',
+                        name: 'Diseño UX',
+                        created_by: 'Julianlujan',
+                        account: 'luisconsul',
+                        vacancies: [],
+                        created: 1595338414,
+                        status: 1,
+                        updated: null,
+                        updated_by: null,
+                        questions: [
+                            {
+                                _id: '5f16eeaed8d955388c611ebb',
+                                text: 'Cual es su nombre?',
+                                type: 'open',
+                                created_by: 'Julianlujan',
+                                created: 1595338414,
+                            },
+                            {
+                                _id: '5f16eeaed8d955388c611ebc',
+                                text: 'Viajas a Caba?',
+                                type: 'closed',
+                                created_by: 'Julianlujan',
+                                created: 1595338414,
+                                options: ['si', 'no'],
+                            },
+                            {
+                                _id: '5f16eeaed8d955388c611ebe',
+                                text: 'Como utilizas el programa del 1 al 5?',
+                                type: 'scale',
+                                created_by: 'Julianlujan',
+                                created: 1595338414,
+                                from: 1,
+                                to: 5,
+                            },
+                            {
+                                _id: '5f16eeaed8d955388c611ebd',
+                                text: 'Que programa utilizas?',
+                                type: 'multiple',
+                                created_by: 'Julianlujan',
+                                created: 1595338414,
+                                options: ['Figma', 'Sketch'],
+                            },
+                            {
+                                _id: '5f16ef09630e1e456c968c27',
+                                text: 'Que lenguaje de programacion utilizas?',
+                                type: 'multiple',
+                                created_by: 'Julianlujan',
+                                created: 1595338505,
+                                options: ['NodeJs', 'PHP', 'C#', 'Java'],
+                                updated: 1595338548,
+                                updated_by: 'Julianlujan',
+                            },
+                        ],
+                    })
+                })
+            }
+
+            let oldTemplate = null
+
+            Array.from(document.querySelectorAll('.btn-edit')).forEach(x => {
+                x.addEventListener('click', async e => {
+                    const questionsContainer = document.querySelector(
+                        '.questions'
+                    )
+                    const templateNameInput = document.querySelector(
+                        '#template_name'
+                    )
+
+                    document.querySelector('#update-template').style.display =
+                        'block'
+                    document.querySelector('#save-template').style.display =
+                        'none'
+
+                    try {
+                        const idtemplate = e.target.getAttribute('id-config')
+
+                        document
+                            .getElementById('loader')
+                            .classList.remove('hidden')
+
+                        oldTemplate = await getQuestion(idtemplate)
+
+                        document
+                            .getElementById('loader')
+                            .classList.add('hidden')
+
+                        templateNameInput.value = oldTemplate.name
+
+                        questionsContainer.innerHTML = ''
+
+                        Array.from(oldTemplate.questions).forEach(x => {
+                            addNewQuestion(x)
+                        })
+                    } catch (e) {
+                        console.log(e)
+                    }
+                })
+            })
+
+            document
+                .querySelector('#update-template')
+                .addEventListener('click', e => {
+                    e.preventDefault()
+
+                    const template = {
+                        name: document.getElementById('template_name').value,
+                        questions: [],
+                        id: oldTemplate._id,
+                    }
+
+                    const questions = Array.from(
+                        document.querySelectorAll('.question')
+                    )
+
+                    questions.forEach(question => {
+                        const questionId = question.getAttribute('id-config')
+
+                        let newQuestion = makeQuestionObject(question)
+                        newQuestion.action = question.getAttribute('action')
+
+                        if (questionId) {
+                            newQuestion = {
+                                ...newQuestion,
+                                id: questionId,
+                            }
+
+                            if (newQuestion.action === null) {
+                                const oldQuestionsArray = Array.from(
+                                    oldTemplate.questions
+                                )
+
+                                const oldQuestion = oldQuestionsArray.find(
+                                    element => element._id === newQuestion.id
+                                )
+
+                                if (
+                                    oldQuestion.text !== newQuestion.text ||
+                                    oldQuestion.type !== newQuestion.type
+                                ) {
+                                    newQuestion.action = 'update'
+                                } else {
+                                    switch (newQuestion.type) {
+                                        case 'closed':
+                                        case 'multiple':
+                                            Array.from(
+                                                oldQuestion.options
+                                            ).forEach((oldOption, i) => {
+                                                if (
+                                                    oldOption !==
+                                                    newQuestion.options[i]
+                                                ) {
+                                                    newQuestion.action =
+                                                        'update'
+                                                    return
+                                                }
+                                            })
+
+                                            break
+                                        case 'scale':
+                                            console.log({
+                                                old: oldQuestion.from,
+                                                new: newQuestion.from,
+                                            })
+                                            if (
+                                                Number(oldQuestion.from) !==
+                                                    Number(newQuestion.from) ||
+                                                Number(oldQuestion.to) !==
+                                                    Number(newQuestion.to)
+                                            ) {
+                                                newQuestion.action = 'update'
+                                            }
+                                            break
+                                    }
+                                }
+                            }
+                        }
+
+                        template.questions.push(newQuestion)
+                    })
+
+                    console.log(template)
+                })
+        </script>
+    </body>
+</html>

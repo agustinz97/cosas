@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="styles.css" />
+
+        <link rel="stylesheet" href="../hr-font.css" />
+    </head>
+    <body>
+        <div class="grid">
+            <div>
+                <h3>Titulo del CV</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequuntur maxime asperiores totam earum nobis rerum alias
+                    voluptates voluptatum doloribus voluptas dolore iure, ipsum
+                    sunt. Accusamus at ipsum dolorum cumque adipisci?
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequuntur maxime asperiores totam earum nobis rerum alias
+                    voluptates voluptatum doloribus voluptas dolore iure, ipsum
+                    sunt. Accusamus at ipsum dolorum cumque adipisci?
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequuntur maxime asperiores totam earum nobis rerum alias
+                    voluptates voluptatum doloribus voluptas dolore iure, ipsum
+                    sunt. Accusamus at ipsum dolorum cumque adipisci?
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequuntur maxime asperiores totam earum nobis rerum alias
+                    voluptates voluptatum doloribus voluptas dolore iure, ipsum
+                    sunt. Accusamus at ipsum dolorum cumque adipisci?
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequuntur maxime asperiores totam earum nobis rerum alias
+                    voluptates voluptatum doloribus voluptas dolore iure, ipsum
+                    sunt. Accusamus at ipsum dolorum cumque adipisci?
+                </p>
+            </div>
+            <div class="resizable-container flex-end">
+                <div id="resizable" class="resizable right">
+                    Resizable
+                    <i class="hr-Move resizable-icon"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid2">
+            <div class="resizable-container">
+                <div id="resizable2" class="resizable">
+                    Resizable
+                    <i class="hr-Move resizable-icon"></i>
+                </div>
+            </div>
+            <div>
+                <h3>Titulo del CV</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequuntur maxime asperiores totam earum nobis rerum alias
+                    voluptates voluptatum doloribus voluptas dolore iure, ipsum
+                    sunt. Accusamus at ipsum dolorum cumque adipisci?
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequuntur maxime asperiores totam earum nobis rerum alias
+                    voluptates voluptatum doloribus voluptas dolore iure, ipsum
+                    sunt. Accusamus at ipsum dolorum cumque adipisci?
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequuntur maxime asperiores totam earum nobis rerum alias
+                    voluptates voluptatum doloribus voluptas dolore iure, ipsum
+                    sunt. Accusamus at ipsum dolorum cumque adipisci?
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequuntur maxime asperiores totam earum nobis rerum alias
+                    voluptates voluptatum doloribus voluptas dolore iure, ipsum
+                    sunt. Accusamus at ipsum dolorum cumque adipisci?
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequuntur maxime asperiores totam earum nobis rerum alias
+                    voluptates voluptatum doloribus voluptas dolore iure, ipsum
+                    sunt. Accusamus at ipsum dolorum cumque adipisci?
+                </p>
+            </div>
+        </div>
+
+        <script>
+            class Resizable {
+                constructor(params) {
+                    const {
+                        element,
+                        handler,
+                        minWidth,
+                        maxWidth,
+                        side,
+                        positionAbsolute,
+                    } = params
+
+                    this.el = document.querySelector(element)
+                    this.handler = this.el.querySelector(handler)
+                    this.minWidth = minWidth
+                    this.maxWidth = maxWidth
+                    this.side = side || 'left'
+                    this.positionAbsolute = positionAbsolute || false
+
+                    //binds
+                    this.mouseDown = this.mouseDown.bind(this)
+                    this.mouseMove = this.mouseMove.bind(this)
+                    this.mouseUp = this.mouseUp.bind(this)
+
+                    this.init()
+                }
+
+                init() {
+                    this.el.addEventListener('mousedown', this.mouseDown)
+
+                    if (this.positionAbsolute) {
+                        this.el.style.position = 'absolute'
+                    }
+                }
+
+                mouseDown(e) {
+                    if (this.handler && e.target !== this.handler) {
+                        return
+                    }
+
+                    window.addEventListener('mousemove', this.mouseMove)
+                    window.addEventListener('mouseup', this.mouseUp)
+                }
+
+                mouseMove(e) {
+                    const prevWidth = this.el.clientWidth
+                    let growth = 0
+
+                    if (this.side === 'left') {
+                        const elRightBorder =
+                            this.el.getBoundingClientRect().left + prevWidth
+                        growth = e.clientX - elRightBorder
+                    } else {
+                        const elLeftBorder = this.el.getBoundingClientRect()
+                            .left
+                        growth = elLeftBorder - e.clientX
+                    }
+                    const newWidth = prevWidth + growth
+
+                    if (this.isValidWidth(newWidth)) {
+                        this.el.style.width = `${newWidth}px`
+                    }
+                }
+
+                mouseUp() {
+                    window.removeEventListener('mousemove', this.mouseMove)
+                    window.removeEventListener('mouseup', this.mouseUp)
+                }
+
+                isValidWidth(width) {
+                    if (this.minWidth) {
+                        if (width >= this.minWidth) {
+                            if (this.maxWidth) {
+                                if (width <= this.maxWidth) {
+                                    return true
+                                }
+                            } else {
+                                return true
+                            }
+                        }
+                    } else {
+                        if (this.maxWidth) {
+                            if (width <= this.maxWidth) {
+                                return true
+                            }
+                        } else {
+                            return true
+                        }
+                    }
+
+                    return false
+                }
+            }
+
+            new Resizable({
+                element: '#resizable',
+                handler: '.resizable-icon',
+                minWidth: document
+                    .getElementById('resizable')
+                    .getBoundingClientRect().width,
+                maxWidth: 1500,
+                side: 'right',
+                positionAbsolute: true,
+            })
+
+            new Resizable({
+                element: '#resizable2',
+                handler: '.resizable-icon',
+                minWidth: 500,
+                maxWidth: 1500,
+            })
+        </script>
+    </body>
+</html>

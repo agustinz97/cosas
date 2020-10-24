@@ -1,0 +1,243 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    outline: none;
+}
+
+.mt-16 {
+    margin-top: 16px;
+}
+
+.mt-38 {
+    margin-top: 38px;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.align-end {
+    align-items: flex-end;
+}
+.align-center {
+    align-items: center;
+}
+
+.fs-20 {
+    font-size: 20px;
+}
+
+i[class='hr-*'] {
+    margin-right: 5px;
+}
+
+.input-wrapper {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    right: 10px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.move-icon {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.move-icon.small {
+    font-size: 32px;
+}
+
+.move-icon.small i {
+    color: #9a9a9a !important;
+}
+
+.move-icon i {
+    font-size: 40px;
+
+    cursor: pointer;
+}
+
+.questions {
+    width: 100%;
+    margin-top: 38px;
+    margin-bottom: 24px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.questions .question {
+    width: 100%;
+    margin-bottom: 16px;
+
+    display: grid;
+    grid-template-columns: 10% 1fr;
+    column-gap: 10px;
+}
+
+.questions .question .question__data {
+    padding: 24px;
+
+    border: 3px solid #dadada;
+    border-radius: 8px;
+
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    row-gap: 16px;
+    column-gap: 16px;
+}
+
+.questions .question.invalid .question__data {
+    border-color: red;
+}
+
+.questions .question.invalid .invalid-msg {
+    padding: 12px 4px;
+
+    color: red;
+    font-size: 14px;
+
+    display: flex;
+    align-items: center;
+    grid-column: 2/3;
+}
+
+.questions .question.invalid .invalid-msg i {
+    color: red !important;
+    font-size: 20px;
+    width: 25px;
+}
+
+.questions .question .question__data .answers {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.questions .question .question__data .answers .new-option {
+    margin-left: 10px !important;
+
+    display: flex;
+    align-items: center;
+    width: 90%;
+}
+
+.questions .question .question__data .answers .new-option span {
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.questions .question .question__data .answers .answer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 5% 5% auto;
+    align-items: center;
+
+    margin-bottom: 16px;
+}
+
+.questions .question .question__data .answers .answer.linear {
+    display: flex;
+}
+
+.questions .question .question__data .answers .answer.linear > * {
+    margin-right: 10px;
+}
+
+.questions .question .question__data .answers .answer.linear .select-wrapper {
+    width: 15%;
+}
+
+.questions .question .question__data .answers .answer:last-child {
+    margin: 0;
+}
+
+.questions .question .question__data .answers .answer label {
+    width: 100%;
+    height: 44px;
+    padding: 0 16px;
+    margin: 0;
+
+    border: 1px solid #dadada !important;
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    cursor: default;
+}
+
+.questions .question .question__data .answers .answer label i {
+    cursor: pointer;
+}
+
+.new-question {
+    cursor: pointer;
+}
+
+input {
+    border: 1px solid #dadada !important;
+}
+
+.btn {
+    width: 154px;
+    height: 44px;
+}
+
+select option {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+}
+
+select option:after {
+    font-family: 'Hiring-Font' !important;
+    line-height: 1;
+    color: #555;
+
+    /* content: '\e93e'; */
+    width: 16px;
+    height: 16px;
+    content: 'asdasd';
+
+    position: absolute;
+    left: 5px;
+}
+
+/*28/7/2020*/
+
+.questions .question.drag-chosen .question__data {
+    transform: scale(1.02);
+    box-shadow: 0px 0px 20px rgba(149, 153, 159, 0.16);
+}
+
+select,
+option {
+    font-family: sans-serif, 'Hiring-Font' !important;
+}

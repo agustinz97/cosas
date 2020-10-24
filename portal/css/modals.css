@@ -1,0 +1,89 @@
+.modal-custom {
+    min-height: 300vh;
+    height: 100%;
+    width: 100%;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(137, 137, 137, 0.3);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    opacity: 0;
+    z-index: -1;
+}
+
+.modal-custom .modal__wrapper {
+    width: 90%;
+    max-width: 650px;
+    margin: 0 auto;
+    margin-top: 16px;
+    padding: 32px;
+
+    background-color: #fff;
+    border-radius: 6px !important;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25) !important;
+
+    transform: translateY(-200%);
+
+    animation-duration: 0.4s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-custom.small .modal__wrapper {
+    max-width: 400px !important;
+}
+
+.modal-custom .modal__wrapper--close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.modal-custom .modal__wrapper--icon {
+    height: 141px;
+    margin-bottom: 32px;
+}
+
+.modal-custom .modal__wrapper--title {
+    font-size: 16px;
+    margin-bottom: 8px;
+    align-self: flex-start;
+
+    display: flex;
+    align-items: flex-end;
+}
+
+.modal-custom .modal__wrapper--title i {
+    margin-right: 5px;
+}
+
+.modal-custom .modal__wrapper hr {
+    width: 100%;
+    margin-top: 12px;
+    margin-bottom: 24px;
+    color: #dadada;
+}
+
+.modal-custom .modal__wrapper--text {
+    font-size: 16px;
+    line-height: 25px;
+    margin-bottom: 24px;
+}
+
+.modal-custom .modal__wrapper .btn {
+    width: 160px;
+    height: 40px;
+    align-self: flex-end;
+}
