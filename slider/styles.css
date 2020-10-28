@@ -21,7 +21,6 @@ body {
 .Slider {
     height: 70px;
     display: flex;
-    align-items: flex-end;
     justify-content: space-between;
 
     position: relative;
@@ -33,24 +32,24 @@ body {
 
 .Slider__container {
     height: 100%;
-    width: 95%;
-    list-style: none;
+    width: calc(100% - 32px);
 
     display: grid;
-    grid-template-columns: repeat(12, minmax(108px, 1fr));
+    grid-template-columns: repeat(12, 95px);
+    column-gap: 16px;
 
+    list-style: none;
     overflow: hidden;
     scroll-behavior: smooth;
 }
 
 .Slider__container--item {
-    height: 100%;
+    width: 120px;
+    margin-top: 12px;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    grid-row: 1;
 
     color: #b6b6b6;
     font-size: 14px;
@@ -60,6 +59,8 @@ body {
     white-space: nowrap;
 
     user-select: none;
+
+    position: relative;
 }
 
 .Slider__container--item.active {
@@ -71,7 +72,7 @@ body {
 .Slider__container--item.active::after {
     content: '';
 
-    width: 100%;
+    width: 85%;
     height: 5px;
 
     border-top-right-radius: 6px !important;
@@ -80,12 +81,18 @@ body {
 
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 .Slider__item--date {
     color: #d4d4d4;
     font-size: 12px;
+
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .Slider__container--item.active .Slider__item--date {
@@ -94,7 +101,7 @@ body {
 
 .Slider__control {
     height: 100%;
-    width: 3%;
+    width: 32px;
 
     background-color: #acefcd;
 

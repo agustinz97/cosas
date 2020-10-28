@@ -6,23 +6,23 @@ btnSliderNext &&
     btnSliderNext.addEventListener('click', () => {
         // Scroll
         const sliderWidth = slider.clientWidth
-        const currentPosition = slider.scrollLeft
-        const elementWidth = slider.children[0].getBoundingClientRect().width
-        const newCurrentPosition = currentPosition + elementWidth
+        slider.scrollTo(sliderWidth, 0)
 
-        slider.scrollTo(newCurrentPosition, 0)
+        //enable back button
+        btnSliderPrev.classList.remove('slider-hidden')
 
-        if (newCurrentPosition > 0) {
-            btnSliderPrev.classList.remove('slider-hidden')
-        }
+        //disable next button
+        btnSliderNext.classList.add('slider-hidden')
     })
 
 btnSliderPrev &&
     btnSliderPrev.addEventListener('click', () => {
         // Scroll
-        const currentPosition = slider.scrollLeft
-        const elementWidth = slider.children[0].getBoundingClientRect().width
-        const newCurrentPosition = currentPosition - elementWidth
+        slider.scrollTo(0, 0)
 
-        slider.scrollTo(newCurrentPosition, 0)
+        //enable next button
+        btnSliderNext.classList.remove('slider-hidden')
+
+        //disable prev button
+        btnSliderPrev.classList.add('slider-hidden')
     })
