@@ -7,6 +7,7 @@
 
 body {
     background-color: #f4f4f4;
+    padding: 0 1rem;
 }
 
 .slider-hidden {
@@ -15,6 +16,7 @@ body {
 
 .container {
     max-width: 930px;
+    width: 100%;
     margin: 32px auto;
 }
 
@@ -35,8 +37,7 @@ body {
     width: calc(100% - 32px);
 
     display: grid;
-    grid-template-columns: repeat(12, 95px);
-    column-gap: 16px;
+    grid-template-columns: repeat(12, 114px);
 
     list-style: none;
     overflow: hidden;
@@ -44,7 +45,6 @@ body {
 }
 
 .Slider__container--item {
-    width: 120px;
     margin-top: 12px;
 
     display: flex;
@@ -118,4 +118,10 @@ body {
     color: #3eb07c !important;
 
     pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .Slider__container {
+        grid-template-columns: repeat(12, 100px);
+    }
 }
